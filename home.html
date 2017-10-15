@@ -1,0 +1,85 @@
+<?php
+//get rid of cookies
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+//destroy session
+session_unset();
+session_destroy();
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Recipe Database</title>
+	<meta name="description" content="Recipe Database">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>  
+
+  <nav class="navbar navbar-inverse"> <!-- Navbar -->
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- 'Sign in' text area and buttons -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-right" role="button" action="login.php" method="POST">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username" required name="u_name" id="u_name">
+          <input type="password" class="form-control" placeholder="Password" required name="u_pass" id="u_pass">
+        </div>
+        <button type="submit" class="btn btn-default">Sign In</button>
+      </form>
+    </div>
+  </nav>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Find recipes to fit your budget!</h1>
+        <p class="lead">Select from specific prices, food, or locations.</p>
+        <div class="container">
+
+            <form action="register.php" method="POST"><!-- 'Sign up' form -->
+              <table>
+                <tr><td><h4 class="form-signin-heading">Get started by signing up!</h4></td></tr>
+                <tr><td><label for="username" class="sr-only">Username</label>
+                <input type="text" name="username" id="username" placeholder="Username" required autofocus></td>
+                <td id="message" name="message"></td></tr>
+                <tr><td><label for="password" class="sr-only">Password</label>
+                <input type="text" name= "password" id="password" placeholder="Password" required></td></tr>
+              </table>
+              <button class="btn btn-med btn-primary" type="submit">Sign up</button>
+            </form>
+
+        </div> <!-- /container -->
+      </div>
+
+      <footer class="footer">
+        <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> and <a href="https://twitter.com/mdo">@mdo</a>'s official template.</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>
